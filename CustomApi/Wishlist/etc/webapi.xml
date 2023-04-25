@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/wishlist/customer/items" method="GET">
+        <service class="CustomApi\Wishlist\Api\WishlistManagementInterface" method="getWishlistItemsByCustomerId"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/wishlist/customer/item/:customerId/:productId" method="DELETE">
+        <service class="CustomApi\Wishlist\Api\WishlistManagementInterface" method="removeProductFromWishlist"/>
+       <resources>
+            <resource ref="anonymous" />
+        </resources>      
+    </route>
+   <route url="/V1/wishlist/customer/product/:customerId/:productId" method="POST">
+        <service class="CustomApi\Wishlist\Api\WishlistManagementInterface" method="addProductToWishlist"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+   
+</routes>
